@@ -14,6 +14,7 @@ import MarkdownEditor from '../components/markdown-editor'
 import ContextualGuidance from '../components/contextual-guidance'
 import ErrorAlert from '../components/error-alert'
 import Raven from 'raven-js'
+import accessibleAutocomplete from 'accessible-autocomplete'
 
 var $sentryDsn = document.querySelector('meta[name=sentry-dsn]')
 var $sentryCurrentEnv = document.querySelector('meta[name=sentry-current-env]')
@@ -28,6 +29,7 @@ if ($sentryDsn && $sentryCurrentEnv) {
 restrict('edit-document-form', editDocumentForm)
 restrict('markdown-editor', ($el) => new MarkdownEditor($el).init())
 restrict('error-alert', ($el) => new ErrorAlert($el).init())
+restrict('autocomplete', ($el) => new accessibleAutocomplete.enhanceSelectElement({ selectElement: $el }))
 
 // Initialise guidance at document level
 var guidance = new ContextualGuidance()

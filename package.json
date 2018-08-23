@@ -11,6 +11,7 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "@webcomponents/webcomponentsjs": "^2.0.4",
+    "accessible-autocomplete": "^1.6.1",
     "nodelist-foreach-polyfill": "^1.2.0",
     "raven-js": "^3.26.4"
   },
