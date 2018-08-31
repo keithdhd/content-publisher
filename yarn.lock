@@ -49,7 +49,7 @@ accepts@~1.3.4, accepts@~1.3.5:
 
 "accessible-autocomplete@git://github.com/alphagov/accessible-autocomplete.git#add-multiselect-support":
   version "1.6.1"
-  resolved "git://github.com/alphagov/accessible-autocomplete.git#8141c94a049618a33daa853817d49556e2cdabb2"
+  resolved "git://github.com/alphagov/accessible-autocomplete.git#99ad37338b2404013b09a52d232fe33f11a3435a"
   dependencies:
     preact "^8.2.9"
 

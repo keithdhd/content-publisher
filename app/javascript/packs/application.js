@@ -29,7 +29,17 @@ if ($sentryDsn && $sentryCurrentEnv) {
 restrict('edit-document-form', editDocumentForm)
 restrict('markdown-editor', ($el) => new MarkdownEditor($el).init())
 restrict('error-alert', ($el) => new ErrorAlert($el).init())
-restrict('autocomplete', ($el) => new accessibleAutocomplete.enhanceSelectElement({ selectElement: $el }))
+restrict('autocomplete', ($el) => new accessibleAutocomplete.enhanceSelectElement({
+  selectElement: $el,
+  showAllValues: true,
+  showNoOptionsFound: false
+}))
+restrict('autocomplete-multiselect', ($el) => new accessibleAutocomplete.enhanceSelectElement({
+  selectElement: $el,
+  showAllValues: true,
+  showNoOptionsFound: false,
+  multiple: true
+}))
 
 // Initialise guidance at document level
 var guidance = new ContextualGuidance()
