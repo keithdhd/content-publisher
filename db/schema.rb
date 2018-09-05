@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_134625) do
+ActiveRecord::Schema.define(version: 2018_09_05_142136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,15 +44,17 @@ ActiveRecord::Schema.define(version: 2018_09_05_134625) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "contents", default: {}
-    t.text "summary"
     t.string "base_path"
+    t.text "summary"
     t.json "tags", default: {}
     t.string "publication_state", null: false
     t.bigint "creator_id"
     t.string "review_state", null: false
+    t.bigint "lead_image_id"
     t.index ["base_path"], name: "index_documents_on_base_path", unique: true
     t.index ["content_id", "locale"], name: "index_documents_on_content_id_and_locale", unique: true
     t.index ["creator_id"], name: "index_documents_on_creator_id"
+    t.index ["lead_image_id"], name: "index_documents_on_lead_image_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 2018_09_05_134625) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "documents", "images", column: "lead_image_id"
   add_foreign_key "documents", "users", column: "creator_id"
   add_foreign_key "images", "active_storage_blobs", column: "blob_id", on_delete: :cascade
   add_foreign_key "images", "documents", on_delete: :cascade
