@@ -35,6 +35,11 @@ ContextualGuidance.prototype.getGuidanceId = function (element) {
   return guidanceId
 }
 
+ContextualGuidance.prototype.setupMirrorElement = function (element, mirror) {
+  mirror.setAttribute('data-contextual-guidance', element.getAttribute('data-contextual-guidance'))
+  return mirror
+}
+
 ContextualGuidance.prototype.init = function () {
   var $fields = this.$fields
 
@@ -47,10 +52,20 @@ ContextualGuidance.prototype.init = function () {
   **/
   $fields.forEach(function ($field) {
     var guidanceId = ContextualGuidance.prototype.getGuidanceId($field)
+    var dataModule = $field.getAttribute('data-module')
 
     if (!guidanceId || !document.querySelector('#' + guidanceId)) {
       return
     }
+
+    /** If the contextual guidance is applied to an autocomplete or multiselect
+    *   then we need to mirror the setup of the fallback element (e.g. select)
+    *   in the visible element (e.g. input type=text)
+    **/
+    if (dataModule === 'autocomplete' || dataModule === 'autocomplete-multiselect') {
+      $field = ContextualGuidance.prototype.setupMirrorElement($field, document.getElementById($field.id.replace('-select', '')))
+    }
+
     $field.addEventListener('focus', ContextualGuidance.prototype.handleFocus)
   })
 }
