@@ -15,6 +15,7 @@ class DocumentTypeSchema
     @guidance = params["guidance"].to_a.map(&Guidance.method(:new))
     @description = params["description"]
     @hint = params["hint"]
+    @lead_image = params["lead_image"]
   end
 
   def self.find(document_type_id)
