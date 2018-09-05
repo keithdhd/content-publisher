@@ -18,8 +18,12 @@ en:
           summary: Summary
       lead_image:
         title: Lead image
-        field_name: Image
         no_lead_image: No lead image.
+        fields:
+          alt_text: Alt text
+          caption: Caption
+          credit: Credit
+          image: Image
       metadata:
         status: Status
         updated_at: Last updated
