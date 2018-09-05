@@ -1,23 +1,13 @@
-<div class="govuk-form-group">
-  <%= render "govuk_publishing_components/components/label", {
-    text: schema.label,
-    html_for: "associations[#{schema.id}]"
-  } %>
-  <% options = LinkablesService.new(schema.document_type).select_options %>
-
-  <% if options.any? %>
-    <p class="govuk-hint multiselect-instructions"><%= t("document_associations.edit.multiselect_instructions") %></p>
-    <%= select_tag "associations[#{schema.id}][]",
-      options_for_select(options, associations[schema.id]),
-      class: "govuk-select",
-      multiple: true,
-      size: 10,
-      data: {
-        module: "autocomplete-multiselect",
-        "contextual-guidance": contextual_guidance_id
-      }
-    %>
-  <% else %>
-    <p class="govuk-hint"><%= t("document_associations.edit.no_options") %></p>
-  <% end %>
-</div>
+<%= render "components/autocomplete", {
+  id: schema.id,
+  name: "associations[#{schema.id}][]",
+  label: schema.label,
+  options: LinkablesService.new(schema.document_type).select_options,
+  selected_options: associations[schema.id],
+  multiple: true,
+  size: 10,
+  data: {
+    module: "autocomplete-multiselect",
+    "contextual-guidance": contextual_guidance_id
+  }
+} %>

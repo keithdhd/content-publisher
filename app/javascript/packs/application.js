@@ -31,6 +31,7 @@ restrict('markdown-editor', ($el) => new MarkdownEditor($el).init())
 restrict('error-alert', ($el) => new ErrorAlert($el).init())
 
 /* eslint-disable */
+// disabled eslint because we can not control the name of the constructor (expected to be EnhanceSelectElement)
 restrict('autocomplete', ($el) => new accessibleAutocomplete.enhanceSelectElement({
   selectElement: $el,
   showAllValues: true,
